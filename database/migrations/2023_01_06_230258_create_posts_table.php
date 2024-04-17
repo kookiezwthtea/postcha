@@ -18,6 +18,8 @@ return new class extends Migration
             $table->timestamps();
             $table->string('title');
             $table->longText('body');
+            $table->integer('likes_count')->default(0);
+            $table->integer('views_count')->default(0);
             $table->string('photo')->nullable();
             $table->foreignId('user_id')->constrained();
         });

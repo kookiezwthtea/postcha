@@ -64,5 +64,23 @@ class PostController extends Controller
         Post::create($validatedData);
         return redirect('/');
     }
+
+public function like($id)
+{
+    $post = Post::findOrFail($id);
+    $post->incrementLikes();
+    return redirect()->back()->with('success', 'Post liked successfully.');
+}
+
+public function show($id)
+{
+    $postId = 'post_' . $post->id;
+    if (!$request->session()->has($postId)) {
+        $post->increment('views_count');
+        $request->session()->put($postId, true);
+    }
+
+    return view('posts.show', ['post' => $post]);
+}
     
 }
