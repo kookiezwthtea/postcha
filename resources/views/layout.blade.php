@@ -17,6 +17,20 @@
 }
   </style>
 <body>
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('link[href], script[src]').forEach(function(element) {
+                // Check if URL is using HTTP and replace it with HTTPS
+                if (element.href && element.href.startsWith('http://')) {
+                    element.href = element.href.replace(/^http:/, 'https:');
+                }
+                if (element.src && element.src.startsWith('http://')) {
+                    element.src = element.src.replace(/^http:/, 'https:');
+                }
+            });
+        });
+    </script>
+    
     <div class="container">
         @yield('content')
       </div>
